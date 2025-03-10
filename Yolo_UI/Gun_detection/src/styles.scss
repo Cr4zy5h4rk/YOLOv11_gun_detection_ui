@@ -1,0 +1,197 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Styles globaux pour l'application de surveillance */
+
+/* Variables de couleurs */
+:root {
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --success-color: #28a745;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --border-color: #dee2e6;
+  }
+  
+  /* Boutons */
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .btn.primary:hover {
+    background-color: #0069d9;
+  }
+  
+  .btn.danger {
+    background-color: var(--danger-color);
+    color: white;
+  }
+  
+  .btn.danger:hover {
+    background-color: #c82333;
+  }
+  
+  .btn.warning {
+    background-color: var(--warning-color);
+    color: #212529;
+  }
+  
+  .btn.warning:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn.secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn.secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .btn.small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Status badges */
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .status-badge.active {
+    background-color: var(--success-color);
+  }
+  
+  /* Alertes */
+  .alert-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .alert-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .alert-header {
+    padding: 0.75rem;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .alert-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .alert-actions {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  
+  /* Conteneurs pour la mise en page */
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 992px) {
+    .main-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* Modifications pour la barre de confiance */
+  .confidence-meter {
+    background: #eee;
+    height: 0.75rem;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 0.25rem;
+    flex-grow: 1;
+  }
+  
+  .confidence-bar {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+  
+  .confidence-value {
+    position: absolute;
+    right: 0.5rem;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+  
+  /* Style des panneaux de détection */
+  .detection-panel {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+  
+  .detection-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .detection-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .detection-item:last-child {
+    border-bottom: none;
+  }
+  
+  .detection-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .detection-label {
+    min-width: 80px;
+    font-weight: 500;
+  }

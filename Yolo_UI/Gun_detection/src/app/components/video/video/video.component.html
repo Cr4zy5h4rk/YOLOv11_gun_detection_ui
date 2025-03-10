@@ -1,0 +1,76 @@
+<div class="dashboard-container">
+    <header class="dashboard-header">
+      <h1>Système de Surveillance et Détection</h1>
+      <div class="status-badge" [ngClass]="{'active': isStreaming}">
+        {{ isStreaming ? 'Surveillance active' : 'Surveillance inactive' }}
+      </div>
+    </header>
+  
+    <div class="main-content">
+      <div class="video-section">
+        <div class="video-container">
+          <video #video id="video" [width]="WIDTH" [height]="HEIGHT" autoplay></video>
+          <canvas #canvas id="canvas" [width]="WIDTH" [height]="HEIGHT" hidden></canvas>
+        </div>
+        
+        <div class="controls">
+          <button class="btn primary" (click)="startStreaming()" *ngIf="!isStreaming">
+            <span class="icon">▶</span> Démarrer la détection
+          </button>
+          <button class="btn danger" (click)="stopStreaming()" *ngIf="isStreaming">
+            <span class="icon">■</span> Arrêter la détection
+          </button>
+          <button class="btn secondary" (click)="toggleMute()">
+            <span class="icon">{{ isMuted ? '🔇' : '🔊' }}</span> 
+            {{ isMuted ? 'Activer le son' : 'Désactiver le son' }}
+          </button>
+        </div>
+        
+        <div class="detection-panel" *ngIf="detections.length > 0">
+          <h3>Détections en cours</h3>
+          <ul class="detection-list">
+            <li *ngFor="let det of getCurrentDetections()" class="detection-item">
+              <div class="detection-info">
+                <span class="detection-label">{{ det.class }}</span>
+                <div class="confidence-meter">
+                  <div class="confidence-bar" [style.width.%]="det.confidence"></div>
+                  <span class="confidence-value">{{ det.confidence }}%</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="alerts-section" *ngIf="alerts.length > 0">
+        <div class="alerts-header">
+          <h2>Alertes de sécurité</h2>
+          <div class="alert-actions">
+            <button class="btn warning" (click)="dismissAllAlerts()">Ignorer tout</button>
+            <button class="btn danger" (click)="contactAuthorities()">Contacter les forces de l'ordre</button>
+          </div>
+        </div>
+        
+        <div class="alerts-container">
+          <div class="alert-card" *ngFor="let alert of alerts">
+            <div class="alert-header">
+              <span class="alert-timestamp">{{ alert.timestamp | date:'dd/MM/yyyy à HH:mm:ss' }}</span>
+              <div class="alert-badge">{{ alert.class }} - {{ alert.confidence }}%</div>
+            </div>
+            
+            <div class="alert-image">
+              <img [src]="alert.image" alt="Détection d'arme">
+            </div>
+            
+            <div class="alert-actions">
+              <button class="btn small" (click)="dismissAlert(alert)">Ignorer</button>
+              <button class="btn small primary" (click)="downloadImage(alert)">Télécharger</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Élément audio pour l'alerte sonore -->
+    <audio #alertSound src="assets/sounds/alerte-bombe-nucleaire.mp3" hidden></audio>
+  </div>

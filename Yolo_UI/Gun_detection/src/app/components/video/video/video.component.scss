@@ -1,0 +1,316 @@
+// Variables
+$primary-color: #3f51b5;
+$danger-color: #f44336;
+$warning-color: #ff9800;
+$success-color: #4caf50;
+$background-color: #f5f7fa;
+$card-background: #ffffff;
+$border-radius: 8px;
+
+// Réinitialisation et styles de base
+* {
+  box-sizing: border-box;
+}
+
+.dashboard-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $background-color;
+  color: #333;
+}
+
+// En-tête
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  
+  h1 {
+    margin: 0;
+    color: $primary-color;
+    font-size: 28px;
+  }
+  
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: #9e9e9e;
+    color: white;
+    font-size: 14px;
+    
+    &.active {
+      background-color: $success-color;
+    }
+  }
+}
+
+// Contenu principal
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Section vidéo
+.video-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.video-container {
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Contrôles
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.primary {
+    background-color: $primary-color;
+    color: white;
+  }
+  
+  &.danger {
+    background-color: $danger-color;
+    color: white;
+  }
+  
+  &.warning {
+    background-color: $warning-color;
+    color: white;
+  }
+  
+  &.secondary {
+    background-color: #607d8b;
+    color: white;
+  }
+  
+  &.small {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  .icon {
+    font-size: 14px;
+  }
+}
+
+// Panel de détection
+.detection-panel {
+  background-color: $card-background;
+  border-radius: $border-radius;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  
+  h3 {
+    margin-top: 0;
+    color: $primary-color;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.detection-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detection-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.detection-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.detection-label {
+  min-width: 80px;
+  font-weight: bold;
+  color: $danger-color;
+}
+
+.confidence-meter {
+  flex: 1;
+  height: 24px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.confidence-bar {
+  height: 100%;
+  background: linear-gradient(to right, #ff9d80, $danger-color);
+  border-radius: 12px;
+}
+
+.confidence-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+// Section alertes
+.alerts-section {
+  background-color: $card-background;
+  border-radius: $border-radius;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.alerts-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h2 {
+    margin: 0;
+    color: $danger-color;
+    font-size: 22px;
+  }
+  
+  .alert-actions {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.alerts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.alert-card {
+  background-color: #f9f9f9;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.alert-header {
+  padding: 12px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alert-timestamp {
+  font-size: 14px;
+  color: #666;
+}
+
+.alert-badge {
+  display: inline-block;
+  background-color: $danger-color;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.alert-image {
+  width: 100%;
+  height: 180px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px;
+  background-color: #f5f5f5;
+}
+
+// Adaptations pour les petits écrans
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .controls {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
